@@ -11,10 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-	return view('welcome');
-});
 
 Route::get('/', 'UsersController@index');
-Route::post('create', 'UsersController@create');
-Route::get('/delete/{user}','UsersController@destroy');
+Route::post('/create', 'UsersController@create');
+Route::get('/delete/{user}','UsersController@destroy');		
+Route::get('/user/{user}/edit', 'UsersController@edit');
+Route::patch('/','UsersController@update');

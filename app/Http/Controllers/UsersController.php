@@ -12,10 +12,22 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->has('cari')) {
+            $users = \App\User::where('name','LIKE','%' .$request->cari. '%')
+                            ->orWhere('email', 'like','%'.$request->cari.'%')
+                            ->orWhere('address', 'like','%'.$request->cari.'%')
+                            ->orWhere('address', 'like','%'.$request->cari.'%')
+                            ->orWhere('born', 'like','%'.$request->cari.'%')
+                            ->orWhere('hobby', 'like','%'.$request->cari.'%')
+             ->get();
 
-        $users = User::all();
+        } else {
+            $users = \App\User::all(); 
+        }
+
+        //$users = User::all();
 
         return view('index', compact('users'));
     }
@@ -43,6 +55,20 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         //
+
+        $user = new User;
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->age = $request->age;
+        $user->born = $request->born;
+        $user->hobby = $request->hobby;
+        $user->address = $request->address;
+        $user->password = $request->password;
+
+        $user->save();
+
+        return redirect('/');
     }
 
     /**
@@ -65,6 +91,7 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         //
+        return view('update',compact('user'));
     }
 
     /**
@@ -74,9 +101,22 @@ class UsersController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
-        //
+      
+        $user = \App\User::findOrFail($request->id);
+        // $user = \App\User::findOrFail($request->id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->age = $request->age;
+        $user->born = $request->born;
+        $user->hobby = $request->hobby;
+        $user->address = $request->address;
+        $user->password = $request->password;
+        
+        $user->save();  
+        return redirect('/');
+
     }
 
     /**
@@ -90,6 +130,6 @@ class UsersController extends Controller
         $user = \App\User::findOrFail($user->id);
         $user->delete();
 
-        return redirect('/');
+        return redirect('/');   
     }
 }

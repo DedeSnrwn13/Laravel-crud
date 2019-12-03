@@ -4,24 +4,29 @@
   <meta charset="UTF-8">
   <title>Learn CRUD</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/ccs/bootstrap.min.css">
   {{-- <link rel="stylesheet" href="assets/css/bootstrap.min.css"> --}}
 
 </head>
 <body class="pt-5">
-<div class="container">
+<div class="container-fluid">
   @if(session('success'))
     <div class="alert alert-success" role="alert">
      {{ session('success') }}
     </div>
   @endif
-  <div class="row">
+  <div class="row col-md-12">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
       Create Data
     </button>
+    <form action="/" class="float-right form-inline my-2 my-lg-0 pl-5 ml-5" method="GET">
+      <input name="cari" class="form-control mr-sm-2" type="search" placeholder="Search.." aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
 
     <table class="table table-hover mt-3">
       <thead class="thead-light">
-        <tr>
+        <tr class="text-center">
           <th scope="col">#</th>
           <th scope="col">Name</th>
           <th scope="col">Email</th>
@@ -34,19 +39,19 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($users as $user)
+        @foreach ($users as $users)
           <tr>
             <td>{{  $loop->iteration }}</td>
-            <td>{{ $user->name }}</td>
-            <td>{{ $user->email }}</td>
-            <td>{{ $user->password }}</td>
-            <td>{{ $user->address }}</td>
-            <td>{{ $user->age }}</td>
-            <td>{{ $user->born }}</td>    
-            <td>{{ $user->hobby }}</td>
+            <td>{{ $users->name }}</td>
+            <td>{{ $users->email }}</td>
+            <td>{{ $users->password }}</td>
+            <td>{{ $users->address }}</td>
+            <td>{{ $users->age }}</td>
+            <td>{{ $users->born }}</td>    
+            <td>{{ $users->hobby }}</td>
             <td>
-              <a href="/" class="float-left btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Edit</a>
-              <a href="/delete/{{ $user->id }}" class="float-left btn btn-danger btn-sm">Delete</a>
+              <a href="/user/{{ $users->id }}/edit" class="float-left btn btn-success btn-sm">Edit</a>
+              <a href="/delete/{{ $users->id }}" class="float-right btn btn-danger btn-sm">Delete</a>
             </td>
           </tr>
         @endforeach
@@ -116,6 +121,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
 
 </body>
 </html>
