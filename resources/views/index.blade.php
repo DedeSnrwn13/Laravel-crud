@@ -57,6 +57,10 @@
         @endforeach
       </tbody>
     </table>  
+    {{ $users->links() }}
+    
+    {{-- buat paginasinya --}}
+
 
 
     <!-- Modal -->
@@ -73,34 +77,54 @@
            <form action="/create" method="post">
 
             {{ csrf_field() }}
-              <div class="form-group">
+              <div class="form-group{{ $errors->has('name') ? 'has-error' : ''  }}">
                 <label for="exampleInputName1">Nama</label>
-                <input name="name" type="text" class="form-control" id="exampleInputName1" aria-describedby="emailHelp" placeholder="Masukkan Nama Anda">
+                <input name="name" type="text" class="form-control" id="exampleInputName1" placeholder="Masukkan Nama Anda" value="{{ old('name') }}">
+                @if($errors->has('name'))
+                  <span class="help-block">{{ $errors->first('name') }}</span>
+                @endif 
               </div>
-              <div class="form-group">
+              <div class="form-group{{ $errors->has('email') ? 'has-error' : ''  }}">
                 <label for="exampleInputEmail1">Email</label>
-                <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" value="{{ old('email') }}">
+                 @if($errors->has('email'))
+                  <span class="help-block">{{ $errors->first('email') }}</span>
+                 @endif 
               </div>
-              <div class="form-group">
+              <div class="form-group{{ $errors->has('password') ? 'has-error' : ''  }}">
                 <label for="exampleInputPassword1">Password</label>
-                <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" value="{{ old('password') }}">
+                 @if($errors->has('password'))
+                  <span class="help-block">{{ $errors->first('password') }}</span>
+                 @endif 
               </div>
-               <div class="form-group">
+               <div class="form-group{{ $errors->has('address') ? 'has-error' : ''  }}">
                   <label for="exampleFormControlAddress1">Address</label>
-                  <textarea name="address" class="form-control" id="exampleFormControlAddress1" rows="3"></textarea>
+                  <textarea name="address" class="form-control" id="exampleFormControlAddress1" rows="3">{{ old('address') }}</textarea>
+                  @if($errors->has('address'))
+                    <span class="help-block">{{ $errors->first('address') }}</span>
+                  @endif 
                 </div>
-                <div class="form-group">
+                <div class="form-group{{ $errors->has('age') ? 'has-error' : ''  }}">
                   <label for="exampleInputAge1">Age</label>
-                  <input name="age" type="text" class="form-control" id="exampleInputAge1" placeholder="Masukkan Usia">
+                  <input name="age" type="text" class="form-control" id="exampleInputAge1" placeholder="Masukkan Usia" value="{{ old('age') }} ">
+                  @if($errors->has('age'))
+                    <span class="help-block">{{ $errors->first('age') }}</span>
+                  @endif
                 </div>
-                <div class="form-group">
+                <div class="form-group{{ $errors->has('born') ? 'has-error' : ''  }}">
                   <label for="exampleInputBorn1">Born</label>
-                  <input name="born" type="text" class="form-control" id="exampleInputBorn1" placeholder="Masukkan TTL">
+                  <input name="born" type="text" class="form-control" id="exampleInputBorn1" placeholder="Masukkan TTL" value="{{ old('born') }}">
+                  @if($errors->has('born'))
+                    <span class="help-block">{{ $errors->first('born') }}</span>
+                  @endif
                 </div>
-                <div class="form-group">
+                <div class="form-group{{ $errors->has('hobby') ? 'has-error' : ''  }}">
                   <label for="exampleInputHobby1">Hobby</label>
-                  <input name="hobby" type="text" class="form-control" id="exampleInputHobby1" placeholder="Masukkan Hobby">
+                  <input name="hobby" type="text" class="form-control" id="exampleInputHobby1" placeholder="Masukkan Hobby" value="{{ old('hobby') }}">
+                  @if($errors->has('hobby'))
+                    <span class="help-block">{{ $errors->first('hobby') }}</span>
+                  @endif
                 </div>
              
               <div class="modal-footer">

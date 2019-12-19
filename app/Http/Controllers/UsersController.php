@@ -21,10 +21,10 @@ class UsersController extends Controller
                             ->orWhere('address', 'like','%'.$request->cari.'%')
                             ->orWhere('born', 'like','%'.$request->cari.'%')
                             ->orWhere('hobby', 'like','%'.$request->cari.'%')
-             ->get();
+            ->paginate(3);
 
         } else {
-            $users = \App\User::all(); 
+            $users = \App\User::paginate(3); 
         }
 
         //$users = User::all();
@@ -40,6 +40,15 @@ class UsersController extends Controller
     public function create(Request $request)
     {
         //
+        $this->validate($request, [
+            'name' => 'required|min:5',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:5',
+            'address' => 'required',
+            'age' => 'required',
+            'born' => 'required',
+            'hobby' => 'required',
+        ]);
 
         User::create($request->all());
         return redirect('/')->with('success','Data berhasil diinput');
