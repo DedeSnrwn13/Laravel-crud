@@ -21,7 +21,7 @@ class UsersController extends Controller
                             ->orWhere('address', 'like','%'.$request->cari.'%')
                             ->orWhere('born', 'like','%'.$request->cari.'%')
                             ->orWhere('hobby', 'like','%'.$request->cari.'%')
-            ->paginate(3);
+            ->paginate(3); 
 
         } else {
             $users = \App\User::paginate(3); 

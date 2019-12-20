@@ -39,19 +39,19 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($users as $users)
+        @foreach ($users as $user)
           <tr>
             <td>{{  $loop->iteration }}</td>
-            <td>{{ $users->name }}</td>
-            <td>{{ $users->email }}</td>
-            <td>{{ $users->password }}</td>
-            <td>{{ $users->address }}</td>
-            <td>{{ $users->age }}</td>
-            <td>{{ $users->born }}</td>    
-            <td>{{ $users->hobby }}</td>
+            <td>{{ $user->name }}</td>
+            <td>{{ $user->email }}</td>
+            <td>{{ $user->password }}</td>
+            <td>{{ $user->address }}</td>
+            <td>{{ $user->age }}</td>
+            <td>{{ $user->born }}</td>    
+            <td>{{ $user->hobby }}</td>
             <td>
-              <a href="/user/{{ $users->id }}/edit" class="float-left btn btn-success btn-sm">Edit</a>
-              <a href="/delete/{{ $users->id }}" class="float-right btn btn-danger btn-sm">Delete</a>
+              <a href="/user/{{ $user->id }}/edit" class="float-left btn btn-success btn-sm">Edit</a>
+              <a href="/delete/{{ $user->id }}" class="float-right btn btn-danger btn-sm">Delete</a>
             </td>
           </tr>
         @endforeach
